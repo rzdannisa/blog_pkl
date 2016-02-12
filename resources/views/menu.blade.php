@@ -1,6 +1,6 @@
 <nav>
-    <div class="nav-wrapper" style="background-color: #1565c0 !important">
-      <a href="#" style="margin-left:10px;font-weight:bold;font-size:55px;" class="brand-logo"> BLOG</a>
+    <div class="nav-wrapper" style="background-color: #2196f3 !important;height:65px;">
+      <a href="#" style="margin-left:10px;font-weight:bold;font-size:55px;" class="brand-logo"><i class="fa fa-cubes"></i> BLOG</a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
 
 
@@ -19,5 +19,10 @@
 					@endif
 				</ul>
 			</div>
-		</div>
-	</nav>
+  </div>
+
+  <div class="nav-wrapper" style="background-color:#64b5f6 !important;height:25px;">
+    <ul id="nav-mobile" class="left hide-on-med-and-down">
+    </ul>
+  </div>
+</nav><br><br>
