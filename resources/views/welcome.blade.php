@@ -1,0 +1,50 @@
+@extends('app')
+
+@section('content')
+
+<title>All Artikel</title>
+<blockquote>
+  <p style="font-size:35px;">All Artikel</p>
+</blockquote>
+
+          @foreach($data as $artikel)
+            <div class="row">
+        <div class="col s12 m7">
+          <div class="card">
+
+            <div class="card-image">
+
+              <img style="height:200px; weight:80px !important;"  src="{{ url('images/'.$artikel->pict) }}">
+              <span class="card-title">{{ $artikel->title }}</span>
+            </div>
+            <div class="card-content" style="text-align:justify;">
+            <?php
+            $string = strip_tags($artikel->content);
+
+            if (strlen($string) > 500) {
+
+                // truncate string
+                $stringCut = substr($string, 0, 500);
+
+                // make sure it ends in a word so assassinate doesn't become ass...
+                $string = substr($stringCut, 0, strrpos($stringCut, ' ')).'...';
+            }
+            echo $string;
+            ?>
+            <td><a href="{{ url('view_artikel_/'.$artikel->id) }}" style="color:#1565c0">Read more</a></td>
+            </div>
+            <div class="card-action">
+            {{ App\User::find($artikel->id_user)['name'] }}
+            <i class="material-icons right">perm_contact_calendar</i>
+
+            ( {{ date_format(date_create($artikel->created_at),"D, d M Y H:i:s") }} )
+            </div>
+
+          </div>
+        </div>
+      </div>
+      @endforeach
+
+
+
+@endsection
