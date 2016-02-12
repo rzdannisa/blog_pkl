@@ -45,7 +45,7 @@
             {{ App\User::find($artikel->id_user)['name'] }}
             <i class="material-icons right">perm_contact_calendar</i>
 
-            {{ date_format(date_create($artikel->created_at),"D, d M Y H:i:s") }}
+            ( {{ date_format(date_create($artikel->created_at),"D, d M Y H:i:s") }} )
             @endif
             </div>
 
