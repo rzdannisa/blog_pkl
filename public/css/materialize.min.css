@@ -25,4 +25,10 @@ button.b-add{
 }
 a.a-m{
 	color: #777;
+	font-size: 12px;
+	width:123px;
+}
+a.a-m2{
+	font-size: 10px;
+	color: #777;
 }

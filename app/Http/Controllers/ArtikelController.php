@@ -6,7 +6,9 @@ use App\artikel;
 use App\User;
 use Auth;
 use Illuminate\Http\Request;
+use Illuminate\Contracts\Auth\Registrar;
 use Illuminate\Support\Facades\Input;
+// use App\Http\Controllers\Hash; 
 
 class ArtikelController extends Controller {
 
@@ -20,6 +22,22 @@ class ArtikelController extends Controller {
 	 *
 	 * @return Response
 	 */
+
+	public function register()
+	{
+		return view('artikel.register');
+	}
+	public function registersave()
+	{
+		$user = new User;
+		$user->name = Input::get('name');
+		$user->email = Input::get('email');
+		\Hash::make($user->password = Input::get('password'));
+		$user->save();
+
+		return redirect(url('all_artikel'));
+	}
+
 	public function index()
 	{
 		$data = \DB::select('select *from artikels where id_artikel="menu2" && id_user='.\Auth::user()->id.'');
@@ -29,7 +47,6 @@ class ArtikelController extends Controller {
 
 	public function search()
 	{
-
 		$data = \DB::select('select *from artikels where id_artikel="menu1" && title like "%'.$_POST['search'].'%" 
 			&& id_user='.\Auth::user()->id.'');
 		// $data = array('data'=>Auth::user()->id); 

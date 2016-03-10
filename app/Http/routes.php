@@ -23,6 +23,9 @@ Route::get('menu1', 'ArtikelController@menu1');
 Route::post('search_artikel', 'ArtikelController@search');
 Route::get('add_menu1', 'ArtikelController@add_menu1');
 
+Route::get('artikel/register', 'ArtikelController@register');
+Route::post('artikel/register/save', 'ArtikelController@registersave');
+
 Route::get('edit_artikel_menu1/{id}', 'ArtikelController@edit_menu1');
 Route::post('artikel_menu1_update', 'ArtikelController@artikel_menu1_update');
 
