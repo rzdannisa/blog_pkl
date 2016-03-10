@@ -19,6 +19,12 @@ Route::get('create_new_artikel', 'ArtikelController@create');
 Route::post('save_new_artikel', 'ArtikelController@save');
 
 Route::get('all_artikel', 'ArtikelController@index');
+Route::get('menu1', 'ArtikelController@menu1');
+Route::post('search_artikel', 'ArtikelController@search');
+Route::get('add_menu1', 'ArtikelController@add_menu1');
+
+Route::get('edit_artikel_menu1/{id}', 'ArtikelController@edit_menu1');
+Route::post('artikel_menu1_update', 'ArtikelController@artikel_menu1_update');
 
 Route::get('edit_artikel/{id}', 'ArtikelController@edit');
 Route::post('update_artikel', 'ArtikelController@update');

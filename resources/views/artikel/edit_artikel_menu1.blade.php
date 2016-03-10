@@ -7,13 +7,13 @@
   <p style="font-size:35px;">Edit Artikel</p>
 </blockquote>
  <div class="row">
-    <form method="POST" action="{{ url('update_artikel') }}" class="col s12" enctype="multipart/form-data">
+    <form method="POST" action="{{ url('artikel_menu1_update') }}" class="col s12" enctype="multipart/form-data">
       <div class="row">
-        <div class="input-field col s12">
+        <div class="input-field col s6">
           <input id="title" type="text" name="title" value="{{ $data->title }}" class="validate">
           <input type="hidden" name="id" value="{{ $data->id }}">
           <input type="hidden" name="_token" value="{{ csrf_token() }}">
-          <input type="hidden" name="id_artikel" value="menu2">
+          <input type="hidden" name="id_artikel" value="menu1">
           <label for="title">Title</label><br><br>
         </div>
     </div>

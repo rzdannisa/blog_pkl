@@ -30,7 +30,8 @@ class HomeController extends Controller {
 	 */
 	public function index()
 	{
-		return view('home');
+		$data = \DB::select('select *from artikels where id_user='.\Auth::user()->id.'');
+		return view('artikel/all')->with('data',$data);;
 	}
 
 }

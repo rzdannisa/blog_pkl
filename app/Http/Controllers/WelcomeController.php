@@ -36,8 +36,8 @@ class WelcomeController extends Controller {
 	 */
 	public function index()
 	{
-		$data = array('data'=>artikel::all());
-		return view('welcome')->with($data);
+		$data = \DB::select('select *from artikels where id_artikel="menu2"');
+		return view('welcome')->with('data',$data);
 	}
 
 	public function view($id)

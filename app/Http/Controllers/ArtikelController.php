@@ -22,9 +22,18 @@ class ArtikelController extends Controller {
 	 */
 	public function index()
 	{
-		$data = \DB::select('select *from artikels where id_user='.\Auth::user()->id.'');
+		$data = \DB::select('select *from artikels where id_artikel="menu2" && id_user='.\Auth::user()->id.'');
 		// $data = array('data'=>Auth::user()->id); 
 		return view('artikel.all')->with('data',$data);
+	}
+
+	public function search()
+	{
+
+		$data = \DB::select('select *from artikels where id_artikel="menu1" && title like "%'.$_POST['search'].'%" 
+			&& id_user='.\Auth::user()->id.'');
+		// $data = array('data'=>Auth::user()->id); 
+		return view('artikel.search')->with('data',$data);
 	}
 	
 
@@ -34,16 +43,21 @@ class ArtikelController extends Controller {
 	 * @return Response
 	 */
 	public function create()
-	{
-		return view('artikel.add');
+	{	
+		$data = \DB::select('select *from artikels where id_artikel="menu2" && id_user='.\Auth::user()->id.'');
+		return view('artikel.add')->with('data', $data);
 	}
 
-		public function show($slug)
-	{
-		$data = array('data'=>Posts::where('slug',$slug)->first());
-		return view('artikel.show')->with($data);
+	public function add_menu1()
+	{	
+		return view('artikel.add_menu1');
 	}
 
+	public function menu1()
+	{	
+		$data = \DB::select('select *from artikels where id_artikel="menu1" && id_user='.\Auth::user()->id.'');
+		return view('artikel.menu1')->with('data', $data);
+	}
 	/**
 	 * Store a newly created resource in storage.
 	 *
@@ -57,6 +71,7 @@ class ArtikelController extends Controller {
 		$artikel->title = Input::get('title');
 		$artikel->content = Input::get('content');
 		$artikel->slug = str_slug(input::get('title'));
+		$artikel->id_artikel = Input::get('id_artikel');
 
 		if(Input::hasfile('pict')){
 			$pict = date("YmdHis")
@@ -70,7 +85,7 @@ class ArtikelController extends Controller {
 
 		$artikel->save();
 
-		return redirect(url('create_new_artikel'));
+		return redirect(url('all_artikel'));
 	}
 
 	/**
@@ -95,6 +110,15 @@ class ArtikelController extends Controller {
 		return view('artikel/edit')->with($data);
 	}
 
+	public function edit_menu1($id)
+	{
+		$data = array('data'=>artikel::find($id));
+
+		//dd($data);
+
+		return view('artikel/edit_artikel_menu1')->with($data);
+	}
+
 	public function view($id)
 	{
 		$data = array('data'=>artikel::find($id));
@@ -117,6 +141,7 @@ class ArtikelController extends Controller {
 		$artikel->title = Input::get('title');
 		$artikel->content = Input::get('content');
 		$artikel->slug = str_slug(Input::get('title'));
+		$artikel->id_artikel = Input::get('id_artikel');
 
 		//upload file
 		if(Input::hasFile('pict')){
@@ -132,6 +157,31 @@ class ArtikelController extends Controller {
 		$artikel->save();
 
 		return redirect(url('all_artikel'));
+	}
+
+	public function artikel_menu1_update()
+	{
+		$artikel = artikel::find(Input::get('id'));
+		$artikel->id_user = Auth::user()->id;
+		$artikel->title = Input::get('title');
+		$artikel->content = Input::get('content');
+		$artikel->slug = str_slug(Input::get('title'));
+		$artikel->id_artikel = Input::get('id_artikel');
+
+		//upload file
+		if(Input::hasFile('pict')){
+			$pict = date("YmdHis")
+			.uniqid()
+			."."
+			.Input::file('pict')->getClientOriginalExtension();
+		
+			Input::file('pict')->move(storage_path(),$pict);
+			$artikel->pict = $pict;
+		}
+
+		$artikel->save();
+
+		return redirect(url('menu1'));
 	}
 
 	/**

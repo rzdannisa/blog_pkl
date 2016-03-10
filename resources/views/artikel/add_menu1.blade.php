@@ -3,9 +3,22 @@
 @section('content')
 
 
-<title>Create New Artikel</title>
+<title>Create New Artikel at Menu 1</title>
+<div class="row" >
+<a href="add_menu1"><button class="b-add">Add Artikel</button></a>
+    <form action="{{ url('search_artikel') }}" method="POST" class="col s12">
+      <div class="row">
+        <div class="input-field col s6" style="float:right;width:35%;margin-top:-42px;">
+          <i style="margin-top:10px;color:#EF6C00" class="material-icons prefix">search</i>
+          <input style="margin-top:-5px;border-bottom:3px solid #EF6C00" id="icon_prefix" type="text" name="search" class="validate">
+          <input type="hidden" name="_token" value="{{ csrf_token() }}">
+          <label for="icon_prefix">Search artikel by title</label>
+        </div>
+      </div>
+    </form>
+  </div>
 <blockquote>
-  <p style="font-size:35px;">New Artikel</p>
+  <p style="font-size:35px;">Create New Artikel at Menu 1</p>
 </blockquote>
  <div class="row">
     <form method="POST" action="{{ url('save_new_artikel') }}" class="col s12" enctype="multipart/form-data">
@@ -13,7 +26,7 @@
         <div class="input-field col s12">
           <input id="title" type="text" name="title" class="validate">
           <input type="hidden" name="_token" value="{{ csrf_token() }}">
-          <input type="hidden" name="id_artikel" value="menu2">
+          <input type="hidden" name="id_artikel" value="menu1">
           <label for="title">Title</label>
         </div>
      </div>
