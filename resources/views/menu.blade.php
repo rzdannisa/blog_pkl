@@ -391,7 +391,7 @@
 </ul>
 <nav>
             @if (Auth::guest())
-              <div style="background-color:#fff;height:65px;margin-top:29px;text-align:center;border-bottom:2px solid #E9EDF1;padding-right:20px;margin-left:-30px;" class="nav-wrapper">
+              <div style="background-color:#fff;height:65px;margin-top:55px;text-align:center;border-bottom:2px solid #E9EDF1;padding-right:20px;margin-left:-30px;" class="nav-wrapper">
               <ul class="right hide-on-med-and-down">
             <li><a class="a-m" href="{{ url('/') }}">HOME</a></li>
             <li><a style="color:#777;font-size: 13px;width:123px;" class="dropdown-button" id="menu1" data-activates="dropdown1" href="{{ url('/') }}">PAGESTI <i class="fa fa-caret-down"></i></a></li>
@@ -427,6 +427,7 @@
 
 </nav><br><br>
     </ul>
+    <br>
     <br>
     <br>
     <br>
