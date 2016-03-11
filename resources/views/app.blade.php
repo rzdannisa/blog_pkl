@@ -37,6 +37,11 @@
       $(document).ready(function() {
       $('select').material_select();
       });
+      $('.button-collapse').sideNav({
+      menuWidth: 280,
+      edge: 'left',
+      closeOnClick: true
+      });
       </script>
 
 
